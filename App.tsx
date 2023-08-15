@@ -1,7 +1,8 @@
-import { StatusBar } from 'expo-status-bar';
 import { Text } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import { ThemeProvider } from 'styled-components';
-import THEME from './src/theme'
+
+import THEME from '@theme/index'
 
 export default function App() {
   return (
