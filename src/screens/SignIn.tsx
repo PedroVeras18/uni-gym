@@ -85,7 +85,7 @@ export function SignIn() {
                     />
 
                     <YStack mt={50}>
-                        <Text textAlign='center' color="#FFF" fontSize={15} mb={3}>
+                        <Text textAlign='center' color="#FFF" fontSize={15}>
                             Ainda não tem acesso?
                         </Text>
 

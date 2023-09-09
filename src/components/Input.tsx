@@ -6,7 +6,7 @@ type Props = InputProps & {
 
 export function Input({ errorMessage, ...rest }: Props) {
     return (
-        <YStack mt={10}>
+        <YStack mt={5}>
             <TamaguiInput
                 bg='#121214'
                 width={350}

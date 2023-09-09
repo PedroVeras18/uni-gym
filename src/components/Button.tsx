@@ -8,7 +8,7 @@ type Props = ButtonProps & {
 export function Button({ title, typeButton = 'solid', ...rest }: Props) {
     return (
         <TamaguiButton
-            mt={30}
+            mt={15}
             w={350}
             h={50}
             bg={typeButton === 'outline' ? '' : '#361AE1'}
