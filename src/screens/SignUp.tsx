@@ -19,15 +19,15 @@ export type FormDataProps = {
     name: string;
     email: string;
     password: string;
-    password_confirm?: string;
+    password_confirm: string;
 }
 
 const signUpSchema = yup.object({
     name: yup.string().required('Informe o nome.'),
     email: yup.string().required('Informe o e-mail').email('E-mail inválido.'),
     password: yup.string().required('Informe a senha').min(6, 'A senha deve ter pelo menos 6 dígitos.'),
-    password_confirm: yup.string().oneOf([yup.ref('password')], 'A confirmação da senha não confere')
-});
+    password_confirm: yup.string().required('Confirme a senha.').oneOf([yup.ref('password')], 'A confirmação da senha não confere')
+  });
 
 export function SignUp() {
     const { authenticate } = useAuthService();
@@ -41,8 +41,13 @@ export function SignUp() {
         navigation.goBack();
     }
 
-    async function handleSignUp({ name, email, password }: FormDataProps) {
-        authenticate({name, email, password})
+    async function handleSignUp({ name, email, password, password_confirm }: FormDataProps) {
+        authenticate({
+            name: 'Usuário Teste',
+            email: 'teste@gmail.com',
+            password: 'testetesteteste',
+            password_confirm: 'testetesteteste'
+        })
     }
 
     return (

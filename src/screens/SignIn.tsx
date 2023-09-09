@@ -28,8 +28,9 @@ export function SignIn() {
     async function handleSignIn({ email, password }: FormData) {
         authenticate({
             name: 'Usuário Teste',
-            email,
-            password
+            email: 'teste@gmail.com',
+            password: 'testetesteteste',
+            password_confirm: 'testetesteteste'
         })
     }
 

@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator, BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 
@@ -24,15 +25,29 @@ export type AppNavigatorRoutesProps = BottomTabNavigationProp<AppRoutes>;
 const { Navigator, Screen } = createBottomTabNavigator<AppRoutes>();
 
 export function AppRoutes() {
+    const iconSize = 30;
+
     return (
         <NavigationContainer>
-            <Navigator>
+            <Navigator screenOptions={{
+                headerShown: false,
+                tabBarShowLabel: false,
+                tabBarActiveTintColor: '#4529f8',
+                tabBarInactiveTintColor: '#C4C4CC',
+                tabBarStyle: {
+                    backgroundColor: '#202024',
+                    borderTopWidth: 0,
+                    height: Platform.OS === "android" ? 'auto' : 96,
+                    paddingBottom: 20,
+                    paddingTop: 2
+                  }
+            }}>
                 <Screen
                     name='home'
                     component={Home}
                     options={{
                         tabBarIcon: ({ color, }) => (
-                            <HomeSvg />
+                            <HomeSvg fill={color} width={iconSize} height={iconSize} />
                         )
                     }}
                 />
@@ -41,7 +56,7 @@ export function AppRoutes() {
                     component={History}
                     options={{
                         tabBarIcon: ({ color }) => (
-                            <HistorySvg />
+                            <HistorySvg fill={color} width={iconSize} height={iconSize} />
                         )
                     }}
                 />
@@ -50,7 +65,7 @@ export function AppRoutes() {
                     component={Profile}
                     options={{
                         tabBarIcon: ({ color }) => (
-                            <ProfileSvg />
+                            <ProfileSvg fill={color} width={iconSize} height={iconSize} />
                         )
                     }}
                 />
