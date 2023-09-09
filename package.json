@@ -32,7 +32,8 @@
     "react-native-svg": "13.9.0",
     "react-native-web": "^0.19.8",
     "tamagui": "^1.61.3",
-    "yup": "^1.2.0"
+    "yup": "^1.2.0",
+    "zustand": "^4.4.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

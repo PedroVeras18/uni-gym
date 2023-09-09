@@ -9,6 +9,7 @@ import { AuthNavigatorRoutesProps } from '../routes/auth.routes';
 
 import LogoSVG from '@assets/logoUniGym.svg'
 import BackgroundImg from '@assets/background.png'
+import { useAuthService } from '@store/useaAuth';
 
 type FormData = {
     email: string;
@@ -16,6 +17,7 @@ type FormData = {
 }
 
 export function SignIn() {
+    const { authenticate } = useAuthService();
     const navigation = useNavigation<AuthNavigatorRoutesProps>();
     const { control, handleSubmit, formState: { errors } } = useForm<FormData>()
 
@@ -24,7 +26,11 @@ export function SignIn() {
     }
 
     async function handleSignIn({ email, password }: FormData) {
-        console.log(email, password)
+        authenticate({
+            name: 'Usuário Teste',
+            email,
+            password
+        })
     }
 
     return (

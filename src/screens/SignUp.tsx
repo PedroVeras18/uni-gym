@@ -1,6 +1,8 @@
 import { Controller, useForm } from 'react-hook-form';
 import { ScrollView, YStack, Image, Stack, Text } from "tamagui";
 
+import { useAuthService } from '@store/useaAuth';
+
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -13,21 +15,22 @@ import { AuthNavigatorRoutesProps } from '../routes/auth.routes';
 import LogoSVG from '@assets/logoUniGym.svg'
 import BackgroundImg from '@assets/background.png'
 
-type FormDataProps = {
+export type FormDataProps = {
     name: string;
     email: string;
     password: string;
-    password_confirm: string;
+    password_confirm?: string;
 }
 
 const signUpSchema = yup.object({
     name: yup.string().required('Informe o nome.'),
     email: yup.string().required('Informe o e-mail').email('E-mail inválido.'),
     password: yup.string().required('Informe a senha').min(6, 'A senha deve ter pelo menos 6 dígitos.'),
-    password_confirm: yup.string().required('Confirme a senha.').oneOf([yup.ref('password')], 'A confirmação da senha não confere')
+    password_confirm: yup.string().oneOf([yup.ref('password')], 'A confirmação da senha não confere')
 });
 
 export function SignUp() {
+    const { authenticate } = useAuthService();
     const navigation = useNavigation<AuthNavigatorRoutesProps>();
 
     const { control, handleSubmit, formState: { errors } } = useForm<FormDataProps>({
@@ -39,7 +42,7 @@ export function SignUp() {
     }
 
     async function handleSignUp({ name, email, password }: FormDataProps) {
-        console.log('criou')
+        authenticate({name, email, password})
     }
 
     return (

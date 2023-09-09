@@ -11,6 +11,7 @@ export function Input({ errorMessage, ...rest }: Props) {
                 bg='#121214'
                 width={350}
                 h={60}
+                color='#FFF'
                 placeholderTextColor='#7C7C8A'
                 {...rest}
             />
