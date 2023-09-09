@@ -40,7 +40,7 @@ export function AppRoutes() {
                     height: Platform.OS === "android" ? 'auto' : 96,
                     paddingBottom: 20,
                     paddingTop: 2
-                  }
+                }
             }}>
                 <Screen
                     name='home'

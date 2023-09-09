@@ -22,19 +22,19 @@ export type FormDataProps = {
     password_confirm: string;
 }
 
-const signUpSchema = yup.object({
+/* const signUpSchema = yup.object({
     name: yup.string().required('Informe o nome.'),
     email: yup.string().required('Informe o e-mail').email('E-mail inválido.'),
     password: yup.string().required('Informe a senha').min(6, 'A senha deve ter pelo menos 6 dígitos.'),
     password_confirm: yup.string().required('Confirme a senha.').oneOf([yup.ref('password')], 'A confirmação da senha não confere')
-  });
+  }); */
 
 export function SignUp() {
     const { authenticate } = useAuthService();
     const navigation = useNavigation<AuthNavigatorRoutesProps>();
 
     const { control, handleSubmit, formState: { errors } } = useForm<FormDataProps>({
-        resolver: yupResolver(signUpSchema),
+        /* resolver: yupResolver(signUpSchema), */
     });
 
     function handleGoBack() {

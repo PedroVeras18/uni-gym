@@ -1,9 +1,20 @@
-import { View, Text } from "react-native";
+import { YStack, Text } from "tamagui";
+import { ScreenHeader } from "@components/ScreenHeader";
 
 export function History() {
-    return(
-        <View>
-            <Text>History</Text>
-        </View>
+    return (
+        <YStack>
+            <ScreenHeader
+                title="Histórico de Exercícios"
+            />
+
+            <Text
+                textAlign="center"
+                fontWeight='bold'
+                mt={20} fontSize={20}
+            >
+                Histórico
+            </Text>
+        </YStack>
     )
 }
