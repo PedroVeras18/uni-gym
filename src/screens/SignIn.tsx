@@ -1,9 +1,9 @@
-import { View, Text } from "react-native";
+import { Stack, Text } from "tamagui";
 
 export function SignIn() {
     return(
-        <View>
+        <Stack flex={1} justifyContent="center" alignItems="center">
             <Text>Sign In</Text>
-        </View>
+        </Stack>
     )
 }
