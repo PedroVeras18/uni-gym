@@ -1,7 +1,7 @@
 import { TouchableOpacity } from 'react-native';
 import { XStack, YStack, Text } from 'tamagui';
 
-import { useAuthService } from '@store/useaAuth';
+import { useAuthService } from '@store/useAuth';
 
 import { UserPhoto } from './UserPhoto';
 import defaulUserPhotoImg from '@assets/userPhotoDefault.png';

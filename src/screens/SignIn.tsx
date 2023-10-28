@@ -9,7 +9,9 @@ import { AuthNavigatorRoutesProps } from '../routes/auth.routes';
 
 import LogoSVG from '@assets/logoUniGym.svg'
 import BackgroundImg from '@assets/background.png'
-import { useAuthService } from '@store/useaAuth';
+import { useAuthService } from '@store/useAuth';
+import { useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type FormData = {
     email: string;
@@ -33,6 +35,18 @@ export function SignIn() {
             password_confirm: 'testetesteteste'
         })
     }
+
+    useEffect(() => {
+        const checkAuthData = async () => {
+          const storedAuthData = await AsyncStorage.getItem('userAuthData');
+          if (storedAuthData) {
+            const parsedAuthData = JSON.parse(storedAuthData);
+            authenticate(parsedAuthData);
+          }
+        };
+    
+        checkAuthData();
+      }, []);
 
     return (
         <ScrollView contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false}>

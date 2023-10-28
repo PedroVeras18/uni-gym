@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { FormDataProps } from '@screens/SignUp';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type userAuthProps = FormDataProps & {
     avatar?: string;
@@ -8,7 +9,7 @@ type userAuthProps = FormDataProps & {
 export interface AuthServiceProps {
     userAuth: userAuthProps | null;
     authenticate: (data: FormDataProps) => void;
-    logout: () => void;
+    logout: () => Promise<void>;
 }
 
 export const useAuthService = create<AuthServiceProps>(
@@ -16,11 +17,13 @@ export const useAuthService = create<AuthServiceProps>(
         userAuth: null,
 
         authenticate: async (data: userAuthProps) => {
-            // Fazer chamada na api e atribuir o retorno ao userAuth.
+            const { password, password_confirm, ...authData } = data;
+            await AsyncStorage.setItem('userAuthData', JSON.stringify(authData));
             set(() => ({ userAuth: data }))
         },
 
-        logout: () => {
+        logout: async () => {
+            await AsyncStorage.removeItem('userAuthData');
             set(() => ({ userAuth: null }));
         }
     })
